@@ -12,7 +12,7 @@ import {actions}  from './todoSlice';
 //import ToDoInput from "../../Components/TodoInput/ToDoInput";
 import {bindActionCreators} from "../../utils/store";
 
-import './TodoList.scss'
+import './TodoList.css'
 import RadioBadge from "../../Components/RadioBadge/RaidoBadge";
 
 /**
@@ -42,7 +42,7 @@ class TodoList extends React.Component {
 
 const mapStateToProps = state => ({});  //todo setup this method for get info from the global state
 
-// const mapDispatchToProps = dispatch => ;  //todo implement this function
+const mapDispatchToProps = dispatch => ({});  //todo implement this function
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
