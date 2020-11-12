@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState } from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-
+import Button from 'react-bootstrap/Button';
 import './TodoItem.css';
+import {add}  from '../../Containers/TodoList/todoSlice';
+import {connect, useDispatch} from 'react-redux';
 
 
+const mapDispatch = {add}
 /**
  * todo implement here component which will show todo item
  * Component should contain checkbox text and trash icon for remove item
@@ -18,6 +21,46 @@ import './TodoItem.css';
  *
  * NOTE: need to pass task id into callbacks as param
  */
-export default function TodoItem(){
-  return  // todo implement component markup here
+
+ function retrieve() {
+    let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
+    let g
+    if(!x) return []
+    
+    else {g = JSON.parse(x)
+    let h = []
+    for (let i = 0; i < g.length; i++) {
+      h.push(g[i].text);
+    }
+    return h}
+ }
+
+export default function TodoItem()  {
+  let todoText = retrieve()
+  return (
+    <div>
+      <ul className="list-group list-group-flush">
+      {todoText.map((value, index) => {
+        return (
+        <li className="item list-group-item" key={index}>{value}
+        
+        </li>
+        
+        )
+      })}
+        
+        {/* <li className="list-group-item">{x}</li>
+        <li id="last" className="list-group-item">Test</li> */}
+      </ul>
+    </div>
+
+  )
 }
+
+const mapStateToProps = state => ({});  //todo setup this method for get info from the global state
+
+const mapDispatchToProps = dispatch => ({});  //todo implement this function
+
+// export default connect(null, mapDispatch)(AddTodo)
+// export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+// export default connect(null, mapDispatch)(TodoItem)

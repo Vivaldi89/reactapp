@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  
+}
+
+.max-hgt {
+  max-height: 388px;
+} 
+
+#last {
+  /* margin-top: 5px; */
+}
+
+.item {
+  text-align: left;
 }
 
 .App-logo {
@@ -11,6 +24,21 @@
   .App-logo {
     animation: App-logo-float infinite 3s ease-in-out;
   }
+}
+
+/* .footer {
+  height: 35px;
+} */
+
+.inp {
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color:lightblue;
+  height: 45px;
+  margin-bottom: 20px;
+  outline: none;
 }
 
 .App-header {
