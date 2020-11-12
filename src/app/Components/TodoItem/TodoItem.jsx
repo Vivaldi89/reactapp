@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import './TodoItem.css';
 import {add}  from '../../Containers/TodoList/todoSlice';
 import {connect, useDispatch} from 'react-redux';
+import store from '../../store';
 
 
 const mapDispatch = {add}
@@ -21,7 +22,9 @@ const mapDispatch = {add}
  *
  * NOTE: need to pass task id into callbacks as param
  */
-
+store.subscribe(() => {
+  console.log("changed");
+})
  function retrieve() {
     let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
     let g
@@ -36,6 +39,7 @@ const mapDispatch = {add}
  }
 
 export default function TodoItem()  {
+  
   let todoText = retrieve()
   return (
     <div>

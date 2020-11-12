@@ -65,7 +65,7 @@ class TodoList extends React.Component {
     return (
     <div id='add' className="container">
       <AddTodo>
-        <TodoItem />
+        {/* <TodoItem /> */}
       </AddTodo>
     </div>
     )
