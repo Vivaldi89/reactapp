@@ -1,7 +1,8 @@
 .App {
-  text-align: center;
+  text-align: left;
   
 }
+
 
 body {
   min-width: 1400px;
@@ -15,15 +16,16 @@ body {
   /* margin-top: 5px; */
 }
 
-.true {
+.crossed {
   text-decoration: line-through;
 }
 
-.false {
+.no-cross {
   text-decoration: none;
 }
 
 .item {
+  display: inline-block;
   text-align: left;
 }
 

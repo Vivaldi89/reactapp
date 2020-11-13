@@ -12,6 +12,7 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action) => {
+      console.log("add");
       let x = Math.round(Math.random()*10000000000)
       let obj = {
         id: x,  
@@ -65,14 +66,28 @@ export const todoSlice = createSlice({
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
     clearCompleted: state => {
-      return state + 1  //todo implement funciton for remove all completed (checked ) tasks
+      console.log("clear");
+      let v = JSON.parse(localStorage.getItem('keys'))
+      let newStorage = []
+      
+      for (let i = 0; i < v.length; i++) {
+        let item = {}
+        if (v[i].checked === false){
+          item.id = v[i].id
+          item.text = v[i].text
+          item.checked = false
+          newStorage.push(item)
+        }
+      }
+      localStorage.removeItem('keys')
+      localStorage.setItem('keys', JSON.stringify(newStorage))
     },
     checkAll: state => {
       let v = JSON.parse(localStorage.getItem('keys'))
       let newStorage = []
-      let item = {}
+      
       for (let i = 0; i < v.length; i++) {
-        
+        let item = {}
         item.id = v[i].id
         item.text = v[i].text
         item.checked = true
@@ -80,11 +95,53 @@ export const todoSlice = createSlice({
       }
       localStorage.removeItem('keys')
       localStorage.setItem('keys', JSON.stringify(newStorage))
+    },
+    all: state => {
+      if (localStorage.getItem('backup')) {
+        let v = localStorage.getItem('backup')
+        localStorage.removeItem('keys')
+        localStorage.setItem('keys', v)
+      }
+      else return
+    },
+    todo: state => {
+      all()
+      let v = JSON.parse(localStorage.getItem('keys'))
+      localStorage.setItem('backup', JSON.stringify(v))
+      let newStorage = []
+      for (let i = 0; i < v.length; i++) {
+        let g = {}
+        if (v[i].checked !== true){
+          g.id = v[i].id
+          g.text = v[i].text
+          g.checked = false
+          newStorage.push(g)
+        }
+      }
+      localStorage.removeItem('keys')
+      localStorage.setItem('keys', JSON.stringify(newStorage))
+    },
+    completed: state => {
+      all()
+      let v = JSON.parse(localStorage.getItem('keys'))
+      localStorage.setItem('backup', JSON.stringify(v))
+      let newStorage = []
+      for (let i = 0; i < v.length; i++) {
+        let g = {}
+        if (v[i].checked !== false){
+          g.id = v[i].id
+          g.text = v[i].text
+          g.checked = true
+          newStorage.push(g)
+        }
+      }
+      localStorage.removeItem('keys')
+      localStorage.setItem('keys', JSON.stringify(newStorage))
     }
-  },
+  }
 });
 
-export const {add, remove, markAsChecked, checkAll} = todoSlice.actions;
+export const {add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed} = todoSlice.actions;
 
 
 export default todoSlice.reducer;
