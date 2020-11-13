@@ -5,7 +5,26 @@
 
 
 body {
-  min-width: 1400px;
+  min-width: 1600px;
+}
+
+.center_btn {
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+#task_left {
+  margin-right: 70px;
+  border: none;
+  background-color: white;
+  font-size: 14px;
+}
+
+#clear {
+  float: right;
+  border: none;
+  background-color: white;
+  font-size: 14px;
 }
 
 .max-hgt {
@@ -27,6 +46,10 @@ body {
 .item {
   display: inline-block;
   text-align: left;
+}
+
+#trash {
+  float: right;
 }
 
 .App-logo {

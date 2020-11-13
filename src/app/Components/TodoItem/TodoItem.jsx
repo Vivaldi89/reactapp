@@ -43,15 +43,15 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
     <div>
       <ul className="list-group list-group-flush">
       {posts.map((value, index) => {
-        if (value.checked) check_counter++;
+        if (!value.checked) check_counter++;
         return (
         <li className={"item list-group-item list " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
           <input onClick={e => {markAsChecked(value.id)}} className="" checked={value.checked} type="checkbox" name="" id=""/>
           {value.text}
-          <button value={value.id} onClick={e =>{
+          <FontAwesomeIcon id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
             e.preventDefault()
             remove(value.id)
-          } }>Delete</button>
+          } }>Delete</FontAwesomeIcon>
         </li>
         
         )
@@ -59,12 +59,13 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         
         {/* <li className="list-group-item">{x}</li> */}
         <li id="last" className="list-group-item">
-          <span>Checked {check_counter}</span>
-          <button onClick={() => all()}>All</button>
-          <button onClick={() => checkAll()}>CheckAll</button>
-          <button onClick={() => todo()}>ToDo</button> 
-          <button onClick={() => completed()}>Completed</button>
-          <button onClick={() => clearCompleted()}>Clear completed</button>
+          <button id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</button>
+          {/* <span>Tasks left {check_counter}</span> */}
+          <button className="center_btn" onClick={() => all()}>All</button>
+          
+          <button className="center_btn" onClick={() => todo()}>ToDo</button> 
+          <button className="center_btn"onClick={() => completed()}>Completed</button>
+          <button id="clear" onClick={() => clearCompleted()}>Clear completed</button>
         </li>
       </ul>
     </div>
