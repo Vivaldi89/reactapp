@@ -1,4 +1,5 @@
 import React, {useState } from 'react';
+import ReactDOM from 'react-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faTrashAlt, checkCircle } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
@@ -24,26 +25,23 @@ const mapDispatch = { remove, markAsChecked, checkAll, clearCompleted, all, todo
  
  function retrieve(condition = "") {
    let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
-  //  if (!condition || condition === 'all') {
     let g
     if(!x) return []
     else g = JSON.parse(x)
     return g
-  //  }
-  //  else if (condition === 'todo'){
-
-  //  }
-
  }
+
 
 const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, completed }) => {   //, all, todo, completed
   const posts = useSelector((state) => retrieve())
+  let length = posts.length
   let check_counter = 0
   return (
     <div>
       <ul className="list-group list-group-flush">
       {posts.map((value, index) => {
         if (!value.checked) check_counter++;
+        
         return (
         <li className={"item list-group-item list " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
           <div className='chec'><input onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/></div>
@@ -56,9 +54,8 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         </li>
         
         )
-      })}
-        
-        {/* <li className="list-group-item">{x}</li> */}
+      })} 
+
         <li id="last" className="list-group-item">
           <button id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</button>
           {/* <span>Tasks left {check_counter}</span> */}
@@ -66,12 +63,14 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
           
           <button className="center_btn" onClick={() => todo()}>ToDo</button> 
           <button className="center_btn"onClick={() => completed()}>Completed</button>
-          <button id="clear" onClick={() => clearCompleted()}>Clear completed</button>
+          <button id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': ''}</button>
+          
         </li>
       </ul>
     </div>
-
+    
   )
+  
 }
 
 
