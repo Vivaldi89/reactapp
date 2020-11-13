@@ -63,7 +63,8 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
           
           <button className="center_btn" onClick={() => todo()}>ToDo</button> 
           <button className="center_btn"onClick={() => completed()}>Completed</button>
-          <button id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': ''}</button>
+          {/* <div></div> */}
+          <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
           
         </li>
       </ul>
