@@ -44,6 +44,10 @@ body {
   height: 35px;
 } */
 
+.hid {
+  visibility: hidden;
+}
+
 .inp {
   width: 100%;
   border-top: none;

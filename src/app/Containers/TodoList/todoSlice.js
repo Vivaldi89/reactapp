@@ -101,11 +101,17 @@ export const todoSlice = createSlice({
         let v = localStorage.getItem('backup')
         localStorage.removeItem('keys')
         localStorage.setItem('keys', v)
+        localStorage.removeItem('backup')
       }
       else return
     },
     todo: state => {
-      all()
+      if (localStorage.getItem('backup')) {
+        let v = localStorage.getItem('backup')
+        localStorage.removeItem('keys')
+        localStorage.setItem('keys', v)
+      }
+      
       let v = JSON.parse(localStorage.getItem('keys'))
       localStorage.setItem('backup', JSON.stringify(v))
       let newStorage = []
@@ -114,7 +120,7 @@ export const todoSlice = createSlice({
         if (v[i].checked !== true){
           g.id = v[i].id
           g.text = v[i].text
-          g.checked = false
+          g.checked = v[i].checked
           newStorage.push(g)
         }
       }
@@ -122,7 +128,11 @@ export const todoSlice = createSlice({
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
     completed: state => {
-      all()
+      if (localStorage.getItem('backup')) {
+        let v = localStorage.getItem('backup')
+        localStorage.removeItem('keys')
+        localStorage.setItem('keys', v)
+      }
       let v = JSON.parse(localStorage.getItem('keys'))
       localStorage.setItem('backup', JSON.stringify(v))
       let newStorage = []
@@ -131,7 +141,7 @@ export const todoSlice = createSlice({
         if (v[i].checked !== false){
           g.id = v[i].id
           g.text = v[i].text
-          g.checked = true
+          g.checked = v[i].checked
           newStorage.push(g)
         }
       }

@@ -45,7 +45,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       {posts.map((value, index) => {
         if (value.checked) check_counter++;
         return (
-        <li className={"item list-group-item list" + (value.checked ? 'crossed' : 'no-cross')}key={index}>
+        <li className={"item list-group-item list " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
           <input onClick={e => {markAsChecked(value.id)}} className="" checked={value.checked} type="checkbox" name="" id=""/>
           {value.text}
           <button value={value.id} onClick={e =>{
