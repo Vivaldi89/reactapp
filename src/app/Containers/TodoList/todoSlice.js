@@ -69,7 +69,21 @@ export const todoSlice = createSlice({
       console.log("clear");
       let v = JSON.parse(localStorage.getItem('keys'))
       let newStorage = []
-      
+      if (localStorage.getItem('backup')) {
+        let y = JSON.parse(localStorage.getItem('backup'))
+        let newBackup = []
+        for (let i = 0; i < y.length; i++) {
+          let x = {}
+          if (y[i].checked !== true){
+            x.id = y[i].id
+            x.text = y[i].text
+            x.checked = y[i].checked
+            newBackup.push(x)
+          }
+        }
+        localStorage.removeItem('backup')
+        localStorage.setItem('backup', JSON.stringify(newBackup))
+      }
       for (let i = 0; i < v.length; i++) {
         let item = {}
         if (v[i].checked === false){
