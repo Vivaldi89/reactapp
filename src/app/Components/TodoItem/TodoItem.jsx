@@ -46,7 +46,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         if (!value.checked) check_counter++;
         return (
         <li className={"item list-group-item list" + (value.checked ? 'crossed' : 'no-cross')}key={index}>
-          <div className='chec'><FontAwesomeIcon icon="check-circle" onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/></div>
+          <div className='chec'><input onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/></div>
           {/* <input onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/> */}
           <div className='text'>{value.text}</div>
           <div className='trash'><FontAwesomeIcon id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
