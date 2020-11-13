@@ -1,8 +1,8 @@
 import React from 'react';
-import {connect, useDispatch} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import TodoItem from '../../Components/TodoItem/TodoItem';
-import * as actions  from './todoSlice';
-import store from '../../store'
+// import * as actions  from './todoSlice';
+// import store from '../../store'
 import {add}  from './todoSlice';
 /**
  * todo implement component called ToDoInput
@@ -12,8 +12,9 @@ import {add}  from './todoSlice';
  * Use this component for enter tasks name
  */
 //import ToDoInput from "../../Components/TodoInput/ToDoInput";
-import {bindActionCreators} from "../../utils/store";
-
+// import {bindActionCreators} from "../../utils/store";
+// import { controlBadges } from '../../constants/todo';
+import { useState } from 'react';
 import './TodoList.css'
 import RadioBadge from "../../Components/RadioBadge/RaidoBadge";
 
@@ -21,8 +22,7 @@ import RadioBadge from "../../Components/RadioBadge/RaidoBadge";
  * todo use this list of the control badges to show them at the control panel
  */
 
-import { controlBadges } from '../../constants/todo';
-import { useState } from 'react';
+
 
 const mapDispatch = {add}
 
@@ -33,9 +33,9 @@ const mapDispatch = {add}
 
 const AddTodo = ({add}) => {
   const [todoText, setTodoText] = useState('')
-
+  // const dispatch = useDispatch()
   const onChange = e => setTodoText(e.target.value)
-
+  
   return (
     <div>
       <form

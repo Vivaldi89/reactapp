@@ -3,12 +3,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import './TodoItem.css';
-import {add}  from '../../Containers/TodoList/todoSlice';
-import {connect, useDispatch} from 'react-redux';
-import store from '../../store';
-
-
-const mapDispatch = {add}
+import {add, remove}  from '../../Containers/TodoList/todoSlice';
+import {connect, useDispatch, useSelector} from 'react-redux';
 /**
  * todo implement here component which will show todo item
  * Component should contain checkbox text and trash icon for remove item
@@ -22,49 +18,51 @@ const mapDispatch = {add}
  *
  * NOTE: need to pass task id into callbacks as param
  */
-store.subscribe(() => {
-  console.log("changed");
-})
+
+const mapDispatch = {remove}
+ 
  function retrieve() {
     let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
     let g
     if(!x) return []
-    
-    else {g = JSON.parse(x)
-    let h = []
-    for (let i = 0; i < g.length; i++) {
-      h.push(g[i].text);
-    }
-    return h}
+    else g = JSON.parse(x)
+    return g
  }
 
-export default function TodoItem()  {
-  
-  let todoText = retrieve()
+const TodoItem = ({ dispatch, remove }) => {
+  const posts = useSelector((state) => retrieve())
   return (
     <div>
       <ul className="list-group list-group-flush">
-      {todoText.map((value, index) => {
+      {posts.map((value, index) => {
         return (
-        <li className="item list-group-item" key={index}>{value}
-        
+        <li className="item list-group-item" key={index}>
+          <input type="checkbox" name="" id=""/>
+          {value.text}
+          <button value={value.id} onClick={e =>{
+            e.preventDefault()
+            remove(value.id)
+          } }>Delete</button>
         </li>
         
         )
       })}
         
-        {/* <li className="list-group-item">{x}</li>
-        <li id="last" className="list-group-item">Test</li> */}
+        {/* <li className="list-group-item">{x}</li> */}
+        <li id="last" className="list-group-item">
+          <button>checked</button>
+          <button>to do</button>
+          <button>done</button>
+        </li>
       </ul>
     </div>
 
   )
 }
 
+
 const mapStateToProps = state => ({});  //todo setup this method for get info from the global state
 
 const mapDispatchToProps = dispatch => ({});  //todo implement this function
 
-// export default connect(null, mapDispatch)(AddTodo)
-// export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
-// export default connect(null, mapDispatch)(TodoItem)
+export default connect(null, mapDispatch)(TodoItem)
