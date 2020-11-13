@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import './TodoItem.css';
-import {add, remove}  from '../../Containers/TodoList/todoSlice';
+import {add, remove, markAsChecked, checkAll }  from '../../Containers/TodoList/todoSlice';
 import {connect, useDispatch, useSelector} from 'react-redux';
 /**
  * todo implement here component which will show todo item
@@ -19,7 +19,7 @@ import {connect, useDispatch, useSelector} from 'react-redux';
  * NOTE: need to pass task id into callbacks as param
  */
 
-const mapDispatch = {remove}
+const mapDispatch = {remove, markAsChecked, checkAll}
  
  function retrieve() {
     let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
@@ -29,15 +29,16 @@ const mapDispatch = {remove}
     return g
  }
 
-const TodoItem = ({ dispatch, remove }) => {
+const TodoItem = ({ markAsChecked, remove, checkAll }) => {
   const posts = useSelector((state) => retrieve())
   return (
     <div>
       <ul className="list-group list-group-flush">
       {posts.map((value, index) => {
+        
         return (
         <li className="item list-group-item" key={index}>
-          <input type="checkbox" name="" id=""/>
+          <input onClick={e => {markAsChecked(value.id)}} checked={value.checked} type="checkbox" name="" id=""/>
           {value.text}
           <button value={value.id} onClick={e =>{
             e.preventDefault()
@@ -50,9 +51,10 @@ const TodoItem = ({ dispatch, remove }) => {
         
         {/* <li className="list-group-item">{x}</li> */}
         <li id="last" className="list-group-item">
-          <button>checked</button>
-          <button>to do</button>
-          <button>done</button>
+          <button onClick={() => checkAll()}>CheckAll</button>
+          <button>ToDo</button>
+          <button>Completed</button>
+          <button>Clear completed</button>
         </li>
       </ul>
     </div>

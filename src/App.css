@@ -3,12 +3,24 @@
   
 }
 
+body {
+  min-width: 1400px;
+}
+
 .max-hgt {
   max-height: 388px;
 } 
 
 #last {
   /* margin-top: 5px; */
+}
+
+.true {
+  text-decoration: line-through;
+}
+
+.false {
+  text-decoration: none;
 }
 
 .item {
