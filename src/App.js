@@ -10,12 +10,12 @@ var fs = require('browserify-fs');
 
 function App() {
   return (
+    // <div className="containre"></div>
     <div className="row">
       <div className="col-4"/>
-      <div className="col-4 ">
+      <div className="col-4 cont">
         <div className="App">
           <header className="App-header">
-            {/* <h5>Your todo list</h5> */}
             Your todo list
           </header>
           <section className="border shadow p-3 mb-5 bg-white rounded">

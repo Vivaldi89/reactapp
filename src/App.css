@@ -27,12 +27,22 @@ body {
   font-size: 14px;
 }
 
+.cont {
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 0%;
+}
+
 .max-hgt {
   max-height: 388px;
 } 
 
 #last {
-  /* margin-top: 5px; */
+  /* width: 100%; */
+}
+
+section {
+  width: 100%;
 }
 
 .trash {
