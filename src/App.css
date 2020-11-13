@@ -5,7 +5,7 @@
 
 
 body {
-  min-width: 1600px;
+  min-width: 1800px;
 }
 
 .center_btn {
@@ -35,6 +35,14 @@ body {
   /* margin-top: 5px; */
 }
 
+.trash {
+  display: inline;
+}
+
+.chec {
+  display: inline;
+}
+
 .crossed {
   text-decoration: line-through;
 }
@@ -48,8 +56,20 @@ body {
   text-align: left;
 }
 
+.checkb {
+  margin-right: 20px;
+}
+
+.text {
+  display: inline;
+   max-width: 100px;
+   word-break: break-all;
+   text-overflow: ellipsis;
+}
+
 #trash {
   float: right;
+  height: 100%;
 }
 
 .App-logo {

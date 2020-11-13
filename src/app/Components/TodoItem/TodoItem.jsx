@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, checkCircle } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import './TodoItem.css';
 import {add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoList/todoSlice'; //, all, todo, completed
@@ -45,13 +45,14 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       {posts.map((value, index) => {
         if (!value.checked) check_counter++;
         return (
-        <li className={"item list-group-item list " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
-          <input onClick={e => {markAsChecked(value.id)}} className="" checked={value.checked} type="checkbox" name="" id=""/>
-          {value.text}
-          <FontAwesomeIcon id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
+        <li className={"item list-group-item list" + (value.checked ? 'crossed' : 'no-cross')}key={index}>
+          <div className='chec'><FontAwesomeIcon icon="check-circle" onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/></div>
+          {/* <input onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/> */}
+          <div className='text'>{value.text}</div>
+          <div className='trash'><FontAwesomeIcon id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
             e.preventDefault()
             remove(value.id)
-          } }>Delete</FontAwesomeIcon>
+          } }>Delete</FontAwesomeIcon></div>
         </li>
         
         )
