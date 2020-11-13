@@ -52,18 +52,11 @@ export const todoSlice = createSlice({
       
       let newStorage = []
       for (let i = 0; i < v.length; i++) {
-        if (v[i].id === id && v[i].checked === false) {
+        if (v[i].id === id) {
           let item = {}
           item.id = v[i].id
           item.text = v[i].text
-          item.checked = true
-          newStorage.push(item)
-        }
-        else if (v[i].id === id && v[i].checked === true) {
-          let item = {}
-          item.id = v[i].id
-          item.text = v[i].text
-          item.checked = false
+          item.checked = !v[i].checked
           newStorage.push(item)
         }
         else newStorage.push(v[i])
