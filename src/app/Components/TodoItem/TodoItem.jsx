@@ -1,12 +1,11 @@
 import React, {useState } from 'react';
-import ReactDOM from 'react-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faTrashAlt, checkCircle } from '@fortawesome/free-solid-svg-icons'
-import Button from 'react-bootstrap/Button';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons'
 import './TodoItem.css';
 import {add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoList/todoSlice'; //, all, todo, completed
 import {connect, useDispatch, useSelector} from 'react-redux';
 import { compose } from '@reduxjs/toolkit';
+import { Button, ButtonGroup } from 'reactstrap';
 /**
  * todo implement here component which will show todo item
  * Component should contain checkbox text and trash icon for remove item
@@ -36,6 +35,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
   const posts = useSelector((state) => retrieve())
   let length = posts.length
   let check_counter = 0
+  if (length === 0 && !localStorage.getItem('backup')) return null
   return (
     <div>
       <ul className="list-group list-group-flush">
@@ -44,10 +44,10 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         
         return (
         <li className={"item list-group-item list " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
-          <div className='chec'><input onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/></div>
-          {/* <input onClick={e => {markAsChecked(value.id)}} className="checkb" checked={value.checked} type="checkbox" name="" id=""/> */}
+          
+          <div className='chec'><input type="checkbox" onClick={e => {markAsChecked(value.id)}} className="checkb icon-check-empty" checked={value.checked} type="checkbox" name="" id=""/></div>
           <div className='text'>{value.text}</div>
-          <div className='trash'><FontAwesomeIcon id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
+          <div className='trash'><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
             e.preventDefault()
             remove(value.id)
           } }>Delete</FontAwesomeIcon></div>
@@ -57,13 +57,18 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       })} 
 
         <li id="last" className="list-group-item">
-          <button id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</button>
+          <i type='button' id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</i>
           {/* <span>Tasks left {check_counter}</span> */}
-          <button className="center_btn" onClick={() => all()}>All</button>
-          
-          <button className="center_btn" onClick={() => todo()}>ToDo</button> 
-          <button className="center_btn"onClick={() => completed()}>Completed</button>
-          {/* <div></div> */}
+          {/* <div id="btn-gr" className="btn-group btn-group-toggle" data-toggle="buttons">
+            <label className="btn btn-sm btn-secondary"><input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => all()}/>All</label>
+            <label className="btn btn-sm btn-secondary"><input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo</label>
+            <label className="btn btn-sm btn-secondary"><input type="radio" name="options" id="option1" autocomplete="off" className="center_btn"onClick={() => completed()}/>Completed</label>
+          </div> */}
+          <ButtonGroup id="btn-gr">
+          <Button className="radios" size="sm" color="light" onClick={() => all()}>All</Button>
+          <Button className="radios" size="sm" color="light" onClick={() => todo()}>ToDo</Button>
+          <Button className="radios" size="sm" color="light" onClick={() => completed()}>Completed</Button>
+          </ButtonGroup>
           <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
           
         </li>

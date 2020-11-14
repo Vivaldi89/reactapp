@@ -8,11 +8,16 @@ body {
   min-width: 1800px;
 }
 
+.radios {
+  border: solid;
+}
+
 .center_btn {
-  margin-right: 20px;
+  margin-right: 5px;
   font-size: 14px;
   border: none;
   background-color: white;
+  /* padding-bottom: -55px; */
 }
 
 #task_left {
@@ -39,8 +44,12 @@ body {
   max-height: 388px;
 } 
 
+#btn-gr {
+  margin-left: 38px;
+}
+
 #last {
-  margin-bottom: -15px;
+  margin-bottom: -16px;
 }
 
 section {
