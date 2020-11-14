@@ -45,6 +45,15 @@ export const todoSlice = createSlice({
     remove: (state, action) => {
       let id = action.payload; // todo implement function for remove todo from the list
       let v = JSON.parse(localStorage.getItem('keys'))
+      if (localStorage.getItem('backup')){
+        let f = JSON.parse(localStorage.getItem('backup'))
+        let newStorage = []
+        for (let i = 0; i < f.length; i++) {
+          if (f[i].id !== id) newStorage.push(f[i])
+        }
+        localStorage.removeItem('backup')
+        localStorage.setItem('backup', JSON.stringify(newStorage))
+      }
       let newStorage = []
       for (let i = 0; i < v.length; i++) {
         if (v[i].id !== id) newStorage.push(v[i])
@@ -135,8 +144,6 @@ export const todoSlice = createSlice({
         let v = localStorage.getItem('backup')
         localStorage.removeItem('keys')
         localStorage.setItem('keys', v)
-        if (localStorage.getItem('mode')) localStorage.removeItem('mode')
-        localStorage.setItem('mode', 1)
       }
       if (localStorage.getItem('mode')) localStorage.removeItem('mode')
       localStorage.setItem('mode', 1)
@@ -160,8 +167,6 @@ export const todoSlice = createSlice({
         let v = localStorage.getItem('backup')
         localStorage.removeItem('keys')
         localStorage.setItem('keys', v)
-        if (localStorage.getItem('mode')) localStorage.removeItem('mode')
-        localStorage.setItem('mode', 2)
       }
       if (localStorage.getItem('mode')) localStorage.removeItem('mode')
       localStorage.setItem('mode', 2)

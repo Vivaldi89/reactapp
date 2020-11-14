@@ -49,7 +49,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
   let check_counter = 0
   let mode = localStorage.getItem('mode')
   let isBacked = localStorage.getItem('backup')
-  if (length === 0 && !isBacked) return null
+  if (length === 0 && !isBacked && !localStorage.getItem('mode')) return null
   return (
     <div>
       <ul className="list-group list-group-flush">
@@ -75,9 +75,9 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
           {/* <span>Tasks left {check_counter}</span> */}
           <div id="btn-gr" className="btn-group btn-group-toggle data-toggle" data-toggle="buttons">
             
-            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-danger" : "btn-secondary")}><Input type="radio" clicked name="options" id="option1" autocomplete="off" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All</Label>
-            <Label className={"btn btn-sm " +(mode == 1 ? "btn-danger" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo</Label>
-            <Label className={"btn btn-sm "+(mode == 2 ? "btn-danger" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn"onClick={() => completed()}/>Completed</Label>
+            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-success" : "btn-secondary")}><Input type="radio" clicked name="options" id="option1" autocomplete="off" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All</Label>
+            <Label className={"btn btn-sm " +(mode == 1 ? "btn-success" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo</Label>
+            <Label className={"btn btn-sm "+(mode == 2 ? "btn-success" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn"onClick={() => completed()}/>Completed</Label>
           </div>
           {/* <ButtonGroup id="btn-gr">
             <label htmlFor=""><input type="radio" checked={true}></input></label>
