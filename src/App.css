@@ -9,7 +9,7 @@ body {
 }
 
 .radios {
-  border: solid;
+  /* margin-right: 7px; */
 }
 
 .center_btn {
@@ -18,6 +18,10 @@ body {
   border: none;
   background-color: white;
   /* padding-bottom: -55px; */
+}
+
+.btn-color-clicked {
+  background-color: blue;
 }
 
 #task_left {

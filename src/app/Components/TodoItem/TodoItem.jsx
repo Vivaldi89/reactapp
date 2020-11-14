@@ -5,7 +5,7 @@ import './TodoItem.css';
 import {add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoList/todoSlice'; //, all, todo, completed
 import {connect, useDispatch, useSelector} from 'react-redux';
 import { compose } from '@reduxjs/toolkit';
-import { Button, ButtonGroup } from 'reactstrap';
+import { Button, ButtonGroup, Input, Label } from 'reactstrap';
 /**
  * todo implement here component which will show todo item
  * Component should contain checkbox text and trash icon for remove item
@@ -32,10 +32,24 @@ const mapDispatch = { remove, markAsChecked, checkAll, clearCompleted, all, todo
 
 
 const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, completed }) => {   //, all, todo, completed
+  const [cSelected, setCSelected] = useState([]);
+  const [rSelected, setRSelected] = useState(null);
+
+  const onCheckboxBtnClick = (selected) => {
+    const index = cSelected.indexOf(selected);
+    if (index < 0) {
+      cSelected.push(selected);
+    } else {
+      cSelected.splice(index, 1);
+    }
+    setCSelected([...cSelected]);
+  }
   const posts = useSelector((state) => retrieve())
   let length = posts.length
   let check_counter = 0
-  if (length === 0 && !localStorage.getItem('backup')) return null
+  let mode = localStorage.getItem('mode')
+  let isBacked = localStorage.getItem('backup')
+  if (length === 0 && !isBacked) return null
   return (
     <div>
       <ul className="list-group list-group-flush">
@@ -59,16 +73,18 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         <li id="last" className="list-group-item">
           <i type='button' id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</i>
           {/* <span>Tasks left {check_counter}</span> */}
-          {/* <div id="btn-gr" className="btn-group btn-group-toggle" data-toggle="buttons">
-            <label className="btn btn-sm btn-secondary"><input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => all()}/>All</label>
-            <label className="btn btn-sm btn-secondary"><input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo</label>
-            <label className="btn btn-sm btn-secondary"><input type="radio" name="options" id="option1" autocomplete="off" className="center_btn"onClick={() => completed()}/>Completed</label>
-          </div> */}
-          <ButtonGroup id="btn-gr">
-          <Button className="radios" size="sm" color="light" onClick={() => all()}>All</Button>
-          <Button className="radios" size="sm" color="light" onClick={() => todo()}>ToDo</Button>
-          <Button className="radios" size="sm" color="light" onClick={() => completed()}>Completed</Button>
-          </ButtonGroup>
+          <div id="btn-gr" className="btn-group btn-group-toggle data-toggle" data-toggle="buttons">
+            
+            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-danger" : "btn-secondary")}><Input type="radio" clicked name="options" id="option1" autocomplete="off" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All</Label>
+            <Label className={"btn btn-sm " +(mode == 1 ? "btn-danger" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo</Label>
+            <Label className={"btn btn-sm "+(mode == 2 ? "btn-danger" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn"onClick={() => completed()}/>Completed</Label>
+          </div>
+          {/* <ButtonGroup id="btn-gr">
+            <label htmlFor=""><input type="radio" checked={true}></input></label>
+            <Button outline className="radios" size="sm" color="secondary" active={rSelected === 1} selected={true} onClick={() => {all();setRSelected(1);}}>All</Button>
+            <Button outline className="radios" size="sm" color="secondary" active={rSelected === 2} onClick={() => {todo();setRSelected(2);}}>ToDo</Button>
+            <Button outline className="radios" size="sm" color="secondary" active={rSelected === 3} onClick={() => {completed();setRSelected(3);}}>Completed</Button>
+          </ButtonGroup> */}
           <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
           
         </li>
