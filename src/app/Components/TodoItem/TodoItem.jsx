@@ -36,6 +36,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
   const posts = useSelector((state) => retrieve())
   let length = posts.length
   let check_counter = 0
+  if (length === 0) return null
   return (
     <div>
       <ul className="list-group list-group-flush">
