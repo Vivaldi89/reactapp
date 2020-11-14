@@ -12,14 +12,20 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action) => {
-      console.log("add");
       let x = Math.round(Math.random()*10000000000)
+      let f = []
       let obj = {
         id: x,  
         text: action.payload,
         checked: false
       }
-      let f = []
+      if (localStorage.getItem('backup')){
+        let x = JSON.parse(localStorage.getItem('backup'))
+        x.push(obj)
+        localStorage.removeItem('backup')
+        localStorage.setItem('backup', JSON.stringify(x))
+        return
+      }
       f.push(obj)
       if (!localStorage.getItem('keys')) localStorage.setItem('keys', JSON.stringify(f))
       else {
@@ -29,9 +35,8 @@ export const todoSlice = createSlice({
         localStorage.setItem('keys', JSON.stringify(v))
       }
       return {
-        // ...initialState.tasks, 
         tasks: [...state.tasks,{
-          id: x,  //Math.round(Math.random()*10000000000),
+          id: x, 
           text: action.payload,
           checked: false
         }],
