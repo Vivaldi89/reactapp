@@ -4,7 +4,6 @@ import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons'
 import './TodoItem.css';
 import {add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoList/todoSlice'; //, all, todo, completed
 import {connect, useDispatch, useSelector} from 'react-redux';
-import { compose } from '@reduxjs/toolkit';
 import { Button, ButtonGroup, Input, Label } from 'reactstrap';
 /**
  * todo implement here component which will show todo item
@@ -72,10 +71,9 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
 
         <li id="last" className="list-group-item">
           <i type='button' id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</i>
-          {/* <span>Tasks left {check_counter}</span> */}
           <div id="btn-gr" className="btn-group btn-group-toggle data-toggle" data-toggle="buttons">
             
-            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-success" : "btn-secondary")}><Input type="radio" clicked name="options" id="option1" autocomplete="off" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All</Label>
+            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-success" : "btn-secondary")}><Input type="radio" clicked name="options" id="option1" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All</Label>
             <Label className={"btn btn-sm " +(mode == 1 ? "btn-success" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo</Label>
             <Label className={"btn btn-sm "+(mode == 2 ? "btn-success" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn"onClick={() => completed()}/>Completed</Label>
           </div>

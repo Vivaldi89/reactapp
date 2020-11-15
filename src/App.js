@@ -10,7 +10,6 @@ var fs = require('browserify-fs');
 
 function App() {
   return (
-    // <div className="containre"></div>
     <div className="row">
       <div className="col-4"/>
       <div className="col-4 cont">
@@ -26,7 +25,6 @@ function App() {
       </div>
       <div className="col-4"/>
     </div>
-    
   );
 }
 
