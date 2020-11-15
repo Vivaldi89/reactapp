@@ -18,6 +18,10 @@
   background-color: blue;
 }
 
+#trash {
+  padding-bottom: -20px;
+}
+
 #task_left {
   margin-right: 70px;
   border: none;
@@ -56,6 +60,7 @@ section {
 
 .trash {
   display: inline;
+  
 }
 
 .chec {

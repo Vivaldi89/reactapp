@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import TodoInput from "./app/Containers/TodoList/TodoInput";
+import TodoInput from "./app/Containers/TodoInput/TodoInput";
 import TodoItem from "./app/Components/TodoItem/TodoItem";
 import 'bootstrap/dist/css/bootstrap.min.css';
 

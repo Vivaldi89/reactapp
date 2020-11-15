@@ -41,8 +41,4 @@ class TodoInput extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});  //todo setup this method for get info from the global state
-
-const mapDispatchToProps = dispatch => ({});  //todo implement this function
-
 export default connect(null, mapDispatch)(AddTodo)

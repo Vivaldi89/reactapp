@@ -1,7 +1,7 @@
-import React, {useState } from 'react';
+import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoList/todoSlice'; //, all, todo, completed
+import { remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoInput/todoSlice'; //, all, todo, completed
 import { connect, useSelector} from 'react-redux';
 import { Input, Label } from 'reactstrap';
 /**
@@ -21,50 +21,53 @@ import { Input, Label } from 'reactstrap';
 const mapDispatch = { remove, markAsChecked, checkAll, clearCompleted, all, todo, completed } //, all, todo, completed
  
  function retrieve(condition = "") {
-   let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
+    let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
+    if(!x) return [] 
     let g
-    if(!x) return []
-    else g = JSON.parse(x)
-    return g
+    switch (condition) {
+    case '1':
+      g = JSON.parse(x).filter((el) => el.checked === false)
+      return g
+    case '2':
+      g = JSON.parse(x).filter((el) => el.checked === true)
+      return g
+    default:
+      g = JSON.parse(x)
+      return g
+    }
  }
 
 const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, completed }) => { 
   let mode = localStorage.getItem('mode')
-  const posts = useSelector((state) => retrieve())
+  const posts = useSelector((state) => retrieve(mode))
   let length = posts.length
   let check_counter = 0
-  
-  let isBacked = localStorage.getItem('backup')
   if (length === 0 && !mode) return null
   return (
     <div>
       <ul className="list-group list-group-flush">
       {posts.map((value, index) => {
         if (!value.checked) check_counter++;
-        
         return (
         <li className={"item list-group-item list " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
-          
-          <div className='chec'><input type="checkbox" onClick={e => {markAsChecked(value.id)}} className="checkb icon-check-empty" checked={value.checked} type="checkbox"/></div>
+          <div className='chec'><input type="checkbox" onClick={e => {markAsChecked(value.id)}} className="checkb icon-check-empty" checked={value.checked}/></div>
           <div className='text'>{value.text}</div>
-          <div className='trash'><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
-            e.preventDefault()
-            remove(value.id)
-          } }>Delete</FontAwesomeIcon></div>
+          <FontAwesomeIcon className='trash' type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/>
+          {/* <div className='trash'><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div> */}
         </li>
         )
       })} 
         <li id="last" className="list-group-item">
           <i type='button' id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</i>
-          <div id="btn-gr" className="btn-group btn-group-toggle data-toggle" data-toggle="buttons">
-            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-success" : "btn-secondary")}>
-              <Input type="radio" clicked name="options" id="option1" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All
+          <div id="btn-gr" className="btn-group btn-group-toggle data-toggle">
+            <Label className={"btn btn-sm "+(!mode || mode === "0" ? "btn-success" : "btn-secondary")}>
+              <Input type="radio" clicked name="options" id="option1" onClick={() => all()}/>All
             </Label>
-            <Label className={"btn btn-sm " +(mode == 1 ? "btn-success" : "btn-secondary")}>
-              <Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo
+            <Label className={"btn btn-sm " +(mode === "1" ? "btn-success" : "btn-secondary")}>
+              <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => todo()}/>ToDo
             </Label>
-            <Label className={"btn btn-sm "+(mode == 2 ? "btn-success" : "btn-secondary")}>
-              <Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => completed()}/>Completed
+            <Label className={"btn btn-sm "+(mode === "2" ? "btn-success" : "btn-secondary")}>
+              <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => completed()}/>Completed
             </Label>
           </div>
           <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>       
