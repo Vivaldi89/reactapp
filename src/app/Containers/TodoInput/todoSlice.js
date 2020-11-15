@@ -9,7 +9,9 @@ export const initialState = {
 export const todoSlice = createSlice({
   name: 'todo',
   initialState,
+  
   reducers: {
+
     add: (state, action) => {
       let x = Math.round(Math.random()*10000000000)
       let f = []
@@ -26,6 +28,7 @@ export const todoSlice = createSlice({
         localStorage.removeItem('keys')
         localStorage.setItem('keys', JSON.stringify(v))
       }},
+
     remove: (state, action) => {
       let id = action.payload; // todo implement function for remove todo from the list
       let v = JSON.parse(localStorage.getItem('keys'))
@@ -34,17 +37,14 @@ export const todoSlice = createSlice({
       localStorage.removeItem('keys')
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
+
     markAsChecked: (state, action) => {
       let id = action.payload;
       let v = JSON.parse(localStorage.getItem('keys'))
-      
       let newStorage = []
       for (let i = 0; i < v.length; i++) {
         if (v[i].id === id) {
-          let item = {}
-          item.id = v[i].id
-          item.text = v[i].text
-          item.checked = !v[i].checked
+          let item = Object.assign({}, v[i], {checked: !v[i].checked})
           newStorage.push(item)
         }
         else newStorage.push(v[i])
@@ -52,38 +52,40 @@ export const todoSlice = createSlice({
       localStorage.removeItem('keys')
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
+
     clearCompleted: state => {
       let v = JSON.parse(localStorage.getItem('keys'))
       let newStorage = v.filter((el) => el.checked !== true)
       localStorage.removeItem('keys')
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
+
     checkAll: state => {
       let v = JSON.parse(localStorage.getItem('keys'))
       let newStorage = []
-      
       for (let i = 0; i < v.length; i++) {
-        let item = {}
-        item.id = v[i].id
-        item.text = v[i].text
-        item.checked = true
+        let item = Object.assign({}, v[i], {checked: true})
         newStorage.push(item)
       }
       localStorage.removeItem('keys')
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
+
     all: state => {
       if (localStorage.getItem('mode')) localStorage.removeItem('mode')
       localStorage.setItem('mode', 0)
     },
+
     todo: state => {
       if (localStorage.getItem('mode')) localStorage.removeItem('mode')
       localStorage.setItem('mode', 1)
     },
+
     completed: state => {
       if (localStorage.getItem('mode')) localStorage.removeItem('mode')
       localStorage.setItem('mode', 2)
     }
+
   }
 });
 
