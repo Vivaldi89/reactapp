@@ -66,11 +66,12 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
             <Label className={"btn btn-sm " +(mode === "1" ? "btn-success" : "btn-secondary")}>
               <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => todo()}/>ToDo
             </Label>
-            <Label className={"btn btn-sm "+(mode === "2" ? "btn-success" : "btn-secondary")}>
+            <Label id="btns" className={"btn btn-sm "+(mode === "2" ? "btn-success" : "btn-secondary")}>
               <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => completed()}/>Completed
             </Label>
+            <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
           </div>
-          <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>       
+                 
         </li>
       </ul>
     </div>

@@ -23,13 +23,18 @@
 }
 
 #task_left {
-  margin-right: 70px;
+  margin-right: 50px;
   border: none;
   background-color: white;
   font-size: 14px;
 }
 
+#btns {
+  margin-right: 25px;
+}
+
 #clear {
+  margin-bottom: -10px;
   float: right;
   border: none;
   background-color: white;
