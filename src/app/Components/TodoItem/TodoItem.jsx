@@ -53,7 +53,6 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
           <div className='chec'><input type="checkbox" onClick={e => {markAsChecked(value.id)}} className="checkb icon-check-empty" checked={value.checked}/></div>
           <div className='text'>{value.text}</div>
           <FontAwesomeIcon className='trash' type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/>
-          {/* <div className='trash'><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div> */}
         </li>
         )
       })} 
@@ -71,7 +70,6 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
             </Label>
             <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
           </div>
-                 
         </li>
       </ul>
     </div>
