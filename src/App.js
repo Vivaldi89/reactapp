@@ -9,7 +9,7 @@ function App() {
     <div className="row">
       <div className="col-1"/>
       <div className="col-10 cont">
-        <div className="App">
+        <div className="App mx-auto">
           <header className="App-header">
             Your todo list
           </header>

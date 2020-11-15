@@ -1,7 +1,7 @@
 .App {
   text-align: left;
-  min-width: 500px;
-  max-width: 700px;
+  min-width: 620px;
+  max-width: 620px;
 }
 
 .radios {
@@ -24,7 +24,8 @@
 }
 
 #task_left {
-  margin-right: 50px;
+  
+  margin-right: 85px;
   border: none;
   background-color: white;
   font-size: 14px;
@@ -33,7 +34,7 @@
 }
 
 #btns {
-  margin-right: 25px;
+  margin-right: 95px;
 }
 
 #clear {
