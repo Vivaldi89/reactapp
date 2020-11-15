@@ -44,8 +44,8 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         )
       })} 
         <li id="last" className="list-group-item">
-          <i type='button' id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</i>
-          <div id="btn-gr" className="btn-group btn-group-toggle data-toggle">
+          <div id="btn-gr" className="btn-group btn-group-toggle">
+            <i type='button' id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</i>
             <Label className={"btn btn-sm "+(!mode || mode === "0" ? "btn-success" : "btn-secondary")}>
               <Input type="radio" clicked name="options" id="option1" onClick={() => all()}/>All
             </Label>
@@ -55,7 +55,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
             <Label id="btns" className={"btn btn-sm "+(mode === "2" ? "btn-success" : "btn-secondary")}>
               <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => completed()}/>Completed
             </Label>
-            <i className="faCheckSquare" type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
+            <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
           </div>
         </li>
       </ul>
