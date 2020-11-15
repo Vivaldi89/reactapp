@@ -1,6 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoInput/todoSlice'; //, all, todo, completed
 import { connect, useSelector} from 'react-redux';
 import { Input, Label } from 'reactstrap';
@@ -68,7 +68,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
             <Label id="btns" className={"btn btn-sm "+(mode === "2" ? "btn-success" : "btn-secondary")}>
               <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => completed()}/>Completed
             </Label>
-            <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
+            <i className="faCheckSquare" type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
           </div>
         </li>
       </ul>
