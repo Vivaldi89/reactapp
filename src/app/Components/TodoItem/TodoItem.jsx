@@ -1,24 +1,11 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faCheckSquare } from '@fortawesome/free-solid-svg-icons'
-import { remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoInput/todoSlice'; //, all, todo, completed
+import { faTrashAlt, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoInput/todoSlice';
 import { connect, useSelector} from 'react-redux';
 import { Input, Label } from 'reactstrap';
-/**
- * todo implement here component which will show todo item
- * Component should contain checkbox text and trash icon for remove item
- *
- * This component should receive the following params
- * text -  name of task
- * id - id of task
- * checked - checked state of the task
- * onCheck - callback which should be called if the checkbox state was changed
- * onRemove - callback which should be called if the trash icon was called
- *
- * NOTE: need to pass task id into callbacks as param
- */
 
-const mapDispatch = { remove, markAsChecked, checkAll, clearCompleted, all, todo, completed } //, all, todo, completed
+const mapDispatch = { remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }
  
  function retrieve(condition = "") {
     let x = localStorage.getItem('keys') ? localStorage.getItem('keys') : 0
