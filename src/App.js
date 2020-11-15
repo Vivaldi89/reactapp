@@ -7,8 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="row">
-      <div className="col-1"/>
-      <div className="col-10 cont">
+      <div className="col-12 cont">
         <div className="App mx-auto">
           <header className="App-header">
             Your todo list
@@ -19,7 +18,6 @@ function App() {
           </section>
         </div>
       </div>
-      <div className="col-1"/>
     </div>
   );
 }

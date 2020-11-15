@@ -4,10 +4,6 @@
   max-width: 620px;
 }
 
-.radios {
-  /* margin-right: 7px; */
-}
-
 .center_btn {
   margin-right: 5px;
   font-size: 14px;
@@ -24,8 +20,7 @@
 }
 
 #task_left {
-  
-  margin-right: 85px;
+  margin-right: 105px;
   border: none;
   background-color: white;
   font-size: 14px;
