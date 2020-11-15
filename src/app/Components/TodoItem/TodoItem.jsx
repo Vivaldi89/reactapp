@@ -1,10 +1,9 @@
 import React, {useState } from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons'
-import './TodoItem.css';
-import {add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoList/todoSlice'; //, all, todo, completed
-import {connect, useDispatch, useSelector} from 'react-redux';
-import { Button, ButtonGroup, Input, Label } from 'reactstrap';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed }  from '../../Containers/TodoList/todoSlice'; //, all, todo, completed
+import { connect, useSelector} from 'react-redux';
+import { Input, Label } from 'reactstrap';
 /**
  * todo implement here component which will show todo item
  * Component should contain checkbox text and trash icon for remove item
@@ -29,26 +28,14 @@ const mapDispatch = { remove, markAsChecked, checkAll, clearCompleted, all, todo
     return g
  }
 
-
-const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, completed }) => {   //, all, todo, completed
-  const [cSelected, setCSelected] = useState([]);
-  const [rSelected, setRSelected] = useState(null);
-
-  const onCheckboxBtnClick = (selected) => {
-    const index = cSelected.indexOf(selected);
-    if (index < 0) {
-      cSelected.push(selected);
-    } else {
-      cSelected.splice(index, 1);
-    }
-    setCSelected([...cSelected]);
-  }
+const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, completed }) => { 
+  let mode = localStorage.getItem('mode')
   const posts = useSelector((state) => retrieve())
   let length = posts.length
   let check_counter = 0
-  let mode = localStorage.getItem('mode')
+  
   let isBacked = localStorage.getItem('backup')
-  if (length === 0 && !isBacked && !localStorage.getItem('mode')) return null
+  if (length === 0 && !mode) return null
   return (
     <div>
       <ul className="list-group list-group-flush">
@@ -58,44 +45,33 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         return (
         <li className={"item list-group-item list " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
           
-          <div className='chec'><input type="checkbox" onClick={e => {markAsChecked(value.id)}} className="checkb icon-check-empty" checked={value.checked} type="checkbox" name="" id=""/></div>
+          <div className='chec'><input type="checkbox" onClick={e => {markAsChecked(value.id)}} className="checkb icon-check-empty" checked={value.checked} type="checkbox"/></div>
           <div className='text'>{value.text}</div>
           <div className='trash'><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} value={value.id} onClick={e =>{
             e.preventDefault()
             remove(value.id)
           } }>Delete</FontAwesomeIcon></div>
         </li>
-        
         )
       })} 
-
         <li id="last" className="list-group-item">
           <i type='button' id="task_left" onClick={() => checkAll()}>Tasks left {check_counter}</i>
           <div id="btn-gr" className="btn-group btn-group-toggle data-toggle" data-toggle="buttons">
-            
-            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-success" : "btn-secondary")}><Input type="radio" clicked name="options" id="option1" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All</Label>
-            <Label className={"btn btn-sm " +(mode == 1 ? "btn-success" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo</Label>
-            <Label className={"btn btn-sm "+(mode == 2 ? "btn-success" : "btn-secondary")}><Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn"onClick={() => completed()}/>Completed</Label>
+            <Label className={"btn btn-sm "+(!isBacked || mode === 0 ? "btn-success" : "btn-secondary")}>
+              <Input type="radio" clicked name="options" id="option1" className={"center_btn "+ (localStorage.getItem('backup') ? "btn-color-clicked": "")} onClick={() => all()}/>All
+            </Label>
+            <Label className={"btn btn-sm " +(mode == 1 ? "btn-success" : "btn-secondary")}>
+              <Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => todo()}/>ToDo
+            </Label>
+            <Label className={"btn btn-sm "+(mode == 2 ? "btn-success" : "btn-secondary")}>
+              <Input type="radio" name="options" id="option1" autocomplete="off" className="center_btn" onClick={() => completed()}/>Completed
+            </Label>
           </div>
-          {/* <ButtonGroup id="btn-gr">
-            <label htmlFor=""><input type="radio" checked={true}></input></label>
-            <Button outline className="radios" size="sm" color="secondary" active={rSelected === 1} selected={true} onClick={() => {all();setRSelected(1);}}>All</Button>
-            <Button outline className="radios" size="sm" color="secondary" active={rSelected === 2} onClick={() => {todo();setRSelected(2);}}>ToDo</Button>
-            <Button outline className="radios" size="sm" color="secondary" active={rSelected === 3} onClick={() => {completed();setRSelected(3);}}>Completed</Button>
-          </ButtonGroup> */}
-          <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>
-          
+          <i type='button' id="clear" onClick={() => clearCompleted()}>{length > check_counter ? 'Clear completed': null}</i>       
         </li>
       </ul>
     </div>
-    
   )
-  
 }
-
-
-const mapStateToProps = state => ({});  //todo setup this method for get info from the global state
-
-const mapDispatchToProps = dispatch => ({});  //todo implement this function
 
 export default connect(null, mapDispatch)(TodoItem)

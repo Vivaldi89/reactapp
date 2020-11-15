@@ -1,12 +1,8 @@
 import React from 'react';
 import './App.css';
-import TodoList from "./app/Containers/TodoList/TodoList";
+import TodoInput from "./app/Containers/TodoList/TodoInput";
 import TodoItem from "./app/Components/TodoItem/TodoItem";
 import 'bootstrap/dist/css/bootstrap.min.css';
-const writeFileP = require("write-file-p");
-var fs = require('browserify-fs');
-
-
 
 function App() {
   return (
@@ -18,7 +14,7 @@ function App() {
             Your todo list
           </header>
           <section className="border shadow p-3 mb-5 bg-white rounded">
-            <TodoList />
+            <TodoInput />
             <TodoItem />
           </section>
         </div>

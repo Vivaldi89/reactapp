@@ -1,11 +1,6 @@
 .App {
   text-align: left;
-  
-}
-
-
-body {
-  min-width: 1800px;
+  min-width: 500px;
 }
 
 .radios {
@@ -17,7 +12,6 @@ body {
   font-size: 14px;
   border: none;
   background-color: white;
-  /* padding-bottom: -55px; */
 }
 
 .btn-color-clicked {
@@ -49,7 +43,7 @@ body {
 } 
 
 #btn-gr {
-  margin-left: 38px;
+  margin-left: 10px;
 }
 
 #last {
@@ -107,11 +101,6 @@ section {
     animation: App-logo-float infinite 3s ease-in-out;
   }
 }
-
-/* .footer {
-  height: 35px;
-} */
-
 .hid {
   visibility: hidden;
 }
