@@ -77,6 +77,11 @@ form {
   display: inline;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
 #ll{
   overflow: auto;
   overflow: -moz-scrollbars-none;
