@@ -21,16 +21,17 @@
 }
 
 #task_left {
-  margin-right: 100px;
+  margin-right: 115px;
   border: none;
   background-color: white;
   font-size: 14px;
   margin-bottom: 6px;
   align-self: flex-end;
+  margin-left: -10px;
 }
 
 #btns {
-  margin-right: 95px;
+  margin-right: 120px;
 }
 
 #clear {
