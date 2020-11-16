@@ -49,7 +49,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       </ul>
       <li id="last" className="list-group-item">
           <div id="btn-gr" className="btn-group btn-group-toggle">
-            <i type='button' id="task_left" onClick={() => checkAll()}>{String(unchecked_counter)} Tasks left</i>
+            <i type='button' id="task_left" onClick={() => checkAll()}>{unchecked_counter} Tasks left</i>
             <Label className={"btn btn-sm "+(!mode || mode === "0" ? "btn-success" : "btn-secondary")}>
               <Input type="radio" clicked name="options" id="option1" onClick={() => all()}/>All
             </Label>
