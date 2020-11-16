@@ -41,7 +41,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
           {/* <label  ></label> */}
           <input type="checkbox" className="in-item option-input checkbox" onClick={e => {console.log(value.id); markAsChecked(value.id)}} checked={value.checked}/>
           <div className='text'>{value.text}</div>
-          <div className="trash"><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div>
+          <div className="trash"><FontAwesomeIcon className="crossed" type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div>
         </li>
         )
       })} 
