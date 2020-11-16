@@ -3,6 +3,7 @@ import './App.css';
 import TodoInput from "./app/Containers/TodoInput/TodoInput";
 import TodoItem from "./app/Components/TodoItem/TodoItem";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Checkbox.css';
 
 function App() {
   return (
