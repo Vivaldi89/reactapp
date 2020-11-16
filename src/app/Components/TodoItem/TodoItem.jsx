@@ -27,9 +27,8 @@ const mapDispatch = { remove, markAsChecked, checkAll, clearCompleted, all, todo
 const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, completed }) => { 
   let mode = localStorage.getItem('mode')
   const posts = useSelector((state) => retrieve(mode))
-  let length = posts.length
+  if (!localStorage.getItem('mode')) {return null}
   let check_counter = 0
-  if (length === 0) localStorage.setItem('mode', 0)
   let checked_counter = JSON.parse(localStorage.getItem('keys')).filter((e) => e.checked === true).length
   let unchecked_counter = JSON.parse(localStorage.getItem('keys')).filter((e) => e.checked === false).length
   return (
@@ -39,12 +38,10 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         if (!value.checked) check_counter++;
         return (
         <li className={"item list-group-item " + (value.checked ? 'crossed' : 'no-cross')}key={index}> 
-          {/* <div className='chec'><input className="checkb  icon-check-empty" type="checkbox" onClick={e => {markAsChecked(value.id)}} checked={value.checked}/></div> */}
-          {/* <label> */}
-          <input type="checkbox" class="in-item option-input checkbox" onClick={e => {markAsChecked(value.id)}} checked={value.checked}/>
-          {/* </label> */}
+          {/* <label  ></label> */}
+          <input type="checkbox" className="in-item option-input checkbox" onClick={e => {console.log(value.id); markAsChecked(value.id)}} checked={value.checked}/>
           <div className='text'>{value.text}</div>
-          <div className="test trash"><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div>
+          <div className="trash"><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div>
         </li>
         )
       })} 
@@ -52,7 +49,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       </ul>
       <li id="last" className="list-group-item">
           <div id="btn-gr" className="btn-group btn-group-toggle">
-            <i type='button' id="task_left" onClick={() => checkAll()}>{unchecked_counter} Tasks left</i>
+            <i type='button' id="task_left" onClick={() => checkAll()}>{String(unchecked_counter)} Tasks left</i>
             <Label className={"btn btn-sm "+(!mode || mode === "0" ? "btn-success" : "btn-secondary")}>
               <Input type="radio" clicked name="options" id="option1" onClick={() => all()}/>All
             </Label>

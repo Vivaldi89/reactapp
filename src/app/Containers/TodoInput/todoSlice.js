@@ -21,7 +21,10 @@ export const todoSlice = createSlice({
         checked: false
       }
       f.push(obj)
-      if (!localStorage.getItem('keys')) localStorage.setItem('keys', JSON.stringify(f))
+      if (!localStorage.getItem('mode')) localStorage.setItem('mode', 0)
+      if (!localStorage.getItem('keys')) {
+        localStorage.setItem('keys', JSON.stringify(f))
+      }
       else {
         let v = JSON.parse(localStorage.getItem('keys'))
         if (v.filter((e) => e.text === obj.text).length > 0) return
@@ -32,6 +35,7 @@ export const todoSlice = createSlice({
     remove: (state, action) => {
       let id = action.payload; // todo implement function for remove todo from the list
       let v = JSON.parse(localStorage.getItem('keys'))
+      if (v.length === 1) localStorage.removeItem('mode')
       let newStorage = v.filter((el) => el.id !== id)
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
@@ -53,7 +57,9 @@ export const todoSlice = createSlice({
     clearCompleted: state => {
       let v = JSON.parse(localStorage.getItem('keys'))
       let newStorage = v.filter((el) => el.checked !== true)
-      localStorage.removeItem('keys')
+      if (newStorage.length === 0) {
+        localStorage.removeItem('mode')
+      }
       localStorage.setItem('keys', JSON.stringify(newStorage))
     },
 
