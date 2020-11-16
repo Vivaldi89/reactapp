@@ -45,7 +45,9 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         </li>
         )
       })} 
-        <li id="last" className="list-group-item">
+        
+      </ul>
+      <li id="last" className="list-group-item">
           <div id="btn-gr" className="btn-group btn-group-toggle">
             <i type='button' id="task_left" onClick={() => checkAll()}>{unchecked_counter} Tasks left</i>
             <Label className={"btn btn-sm "+(!mode || mode === "0" ? "btn-success" : "btn-secondary")}>
@@ -60,7 +62,6 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
             <i type='button' id="clear" onClick={() => clearCompleted()}>{checked_counter ? 'Clear completed': null}</i>
           </div>
         </li>
-      </ul>
     </div>
   )
 }
