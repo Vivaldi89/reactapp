@@ -32,7 +32,6 @@ export const todoSlice = createSlice({
     remove: (state, action) => {
       let id = action.payload; // todo implement function for remove todo from the list
       let v = JSON.parse(localStorage.getItem('keys'))
-      console.log(id);
       let newStorage = v.filter((el) => el.id !== id)
       localStorage.removeItem('keys')
       localStorage.setItem('keys', JSON.stringify(newStorage))
@@ -63,9 +62,17 @@ export const todoSlice = createSlice({
     checkAll: state => {
       let v = JSON.parse(localStorage.getItem('keys'))
       let newStorage = []
-      for (let i = 0; i < v.length; i++) {
-        let item = Object.assign({}, v[i], {checked: true})
-        newStorage.push(item)
+      let unchecked = v.filter((el) => el.checked === false)
+      if (unchecked.length > 0) {
+        for (let i = 0; i < v.length; i++) {
+          let item = Object.assign({}, v[i], {checked: true})
+          newStorage.push(item)
+        }}
+      else {
+        for (let i = 0; i < v.length; i++) {
+          let item = Object.assign({}, v[i], {checked: false})
+          newStorage.push(item)
+        }
       }
       localStorage.removeItem('keys')
       localStorage.setItem('keys', JSON.stringify(newStorage))
