@@ -12,9 +12,9 @@ function App() {
           <header className="App-header">
             Your todo list
           </header>
-          <section className="border shadow p-3 mb-5 bg-white rounded">
+          <section className="border rounded-0 shadow-lg mb-5 bg-white">
             <TodoInput />
-            <TodoItem />
+            <TodoItem className="todoitem" />
           </section>
         </div>
       </div>

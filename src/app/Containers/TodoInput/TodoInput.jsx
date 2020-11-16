@@ -20,7 +20,7 @@ const AddTodo = ({add}) => {
           setTodoText('')
         }}
       >
-        <input className="inp" value={todoText} onChange={onChange} />
+        <input className="inp" placeholder="Enter your task name here" value={todoText} onChange={onChange} />
       </form>
     </div>
   )

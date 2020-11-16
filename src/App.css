@@ -16,11 +16,12 @@
 }
 
 #trash {
-  padding-bottom: -20px;
+  /* margin-bottom: -20px; */
+  /* align-self: flex-end; */
 }
 
 #task_left {
-  margin-right: 105px;
+  margin-right: 100px;
   border: none;
   background-color: white;
   font-size: 14px;
@@ -53,6 +54,7 @@
 
 #btn-gr {
   margin-left: 10px;
+  margin-bottom: 2px;
 }
 
 #last {
@@ -60,11 +62,26 @@
 }
 
 section {
-  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 620;
+}
+
+form {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
 }
 
 .trash {
   display: inline;
+}
+
+#ll{
+  overflow: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+  max-height: 400px;
   
 }
 
@@ -83,6 +100,7 @@ section {
 .item {
   display: inline-block;
   text-align: left;
+  vertical-align: middle;
 }
 
 .checkb {
@@ -91,9 +109,8 @@ section {
 
 .text {
   display: inline;
-   /* max-width: 100px; */
-   word-break: break-all;
-   text-overflow: ellipsis;
+  word-break: break-all;
+  text-overflow: ellipsis;
 }
 
 #trash {
@@ -120,10 +137,11 @@ section {
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom-color:lightblue;
+  border-bottom-color: #F3f2f3;
   height: 45px;
   margin-bottom: 20px;
   outline: none;
+  padding-left: 15px;
 }
 
 .App-header {
