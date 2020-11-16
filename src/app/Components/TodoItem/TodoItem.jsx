@@ -40,11 +40,11 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
         return (
         <li className={"item list-group-item " + (value.checked ? 'crossed' : 'no-cross')}key={index}> 
           {/* <div className='chec'><input className="checkb  icon-check-empty" type="checkbox" onClick={e => {markAsChecked(value.id)}} checked={value.checked}/></div> */}
-          <label>
+          {/* <label> */}
           <input type="checkbox" class="in-item option-input checkbox" onClick={e => {markAsChecked(value.id)}} checked={value.checked}/>
-          </label>
+          {/* </label> */}
           <div className='text'>{value.text}</div>
-          <FontAwesomeIcon className='trash' type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/>
+          <div className="test trash"><FontAwesomeIcon type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div>
         </li>
         )
       })} 

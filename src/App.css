@@ -101,9 +101,19 @@ form {
   text-decoration: none;
 }
 
-.item {
+/* .item {
   text-align: left;
+  display: flex;
   vertical-align: middle;
+} */
+
+.test {
+  height: 15px;
+}
+
+li {
+  display: flex;
+  align-items: center;
 }
 
 .checkb {
@@ -111,7 +121,7 @@ form {
 }
 
 .in-item {
-  margin-bottom: -6px;
+  margin-top: -2px
 }
 
 .text {
@@ -119,15 +129,15 @@ form {
   word-break: break-all;
   text-overflow: ellipsis;
   margin-left: 15px;
-  margin-bottom: 5px;
-  margin-top: -5px;
+  align-content: center;
+  margin-top: -4px;
 }
 
 #trash {
   float: right;
   height: 100%;
-  margin-bottom: -5px;
-  margin-top: 6px;
+  margin-bottom: -9px;
+  margin-top: 5px;
 }
 
 .App-logo {
