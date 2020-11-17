@@ -41,8 +41,13 @@
   margin-right: 100px;
 }
 
+#last_btn {
+  /* margin-right: 0px; */
+}
+
 #clear {
   margin-bottom: 6px;
+  margin-left: 12px;
   float: right;
   border: none;
   background-color: white;
@@ -187,7 +192,7 @@ li {
   height: 100%;
   margin-bottom: -9px;
   margin-top: 3px;
-  margin-right: 20px;
+  margin-right: 25px;
 }
 
 .App-logo {
