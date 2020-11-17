@@ -11,6 +11,7 @@
   font-size: 14px;
   border: none;
   background-color: white;
+  font-weight: bold;
 }
 
 .btn-color-clicked {
@@ -90,6 +91,10 @@ form {
   background: transparent; /* make scrollbar transparent */
 }
 
+.border-second {
+  border-color: gray;
+}
+
 #ll{
   overflow: auto;
   overflow: -moz-scrollbars-none;
@@ -105,17 +110,28 @@ form {
 
 .radios {
   margin-right: 15px;
+  font-weight: bold;
+}
+
+
+#option1 {
+  font-weight: 600;
+}
+
+p {
+  font-weight: 600;
+  display: inline;
 }
 
 .radio_unclicked {
   background-color: white;
   border: none;
+  font-weight: bold;
 }
 
 .radio_clicked {
   background-color: white;
-  border-style: solid;
-  border-color: black;
+  font-weight: bold;
 }
 
 .crossed {
