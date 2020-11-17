@@ -37,8 +37,7 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       {posts.map((value, index) => {
         if (!value.checked) check_counter++;
         return (
-        <li className={"item list-group-item " + (value.checked ? 'crossed' : 'no-cross')}key={index}> 
-          {/* <label  ></label> */}
+        <li className={"item list-group-item " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
           <input type="checkbox" className="in-item option-input checkbox" onClick={e => {console.log(value.id); markAsChecked(value.id)}} checked={value.checked}/>
           <div className='text'>{value.text}</div>
           <div className="trash"><FontAwesomeIcon className="crossed" type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div>
@@ -50,14 +49,14 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       <li id="last" className="list-group-item">
           <div id="btn-gr" className="btn-group btn-group-toggle">
             <i type='button' id="task_left" onClick={() => checkAll()}>{unchecked_counter} Tasks left</i>
-            <Label className={"btn btn-sm "+(!mode || mode === "0" ? "btn-success" : "btn-secondary")}>
+            <Label className={"radios btn btn-sm "+(!mode || mode === "0" ? "radio_clicked border border-dark rounded" : "radio_unclicked")}>
               <Input type="radio" clicked name="options" id="option1" onClick={() => all()}/>All
             </Label>
-            <Label className={"btn btn-sm " +(mode === "1" ? "btn-success" : "btn-secondary")}>
-              <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => todo()}/>ToDo
+            <Label className={"radios btn btn-sm " +(mode === "1" ? "radio_clicked border border-dark rounded" : "radio_unclicked")}>
+              <Input type="radio" name="options" className="center_btn" onClick={() => todo()}/>ToDo
             </Label>
-            <Label id="btns" className={"btn btn-sm "+(mode === "2" ? "btn-success" : "btn-secondary")}>
-              <Input type="radio" name="options" id="option1" className="center_btn" onClick={() => completed()}/>Completed
+            <Label id="btns" className={"radios btn btn-sm "+(mode === "2" ? "radio_clicked border border-dark rounded" : "radio_unclicked")}>
+              <Input type="radio" name="options" id="last_btn" className="center_btn" onClick={() => completed()}/>Completed
             </Label>
             <i type='button' id="clear" onClick={() => clearCompleted()}>{checked_counter ? 'Clear completed': null}</i>
           </div>

@@ -18,7 +18,7 @@
 }
 
 #task_left {
-  margin-right: 105px;
+  margin-right: 80px;
   border: none;
   background-color: white;
   font-size: 14px;
@@ -37,7 +37,7 @@
 }
 
 #btns {
-  margin-right: 120px;
+  margin-right: 100px;
 }
 
 #clear {
@@ -101,6 +101,21 @@ form {
 .chec {
   display: inline;
   margin-bottom: -10px;
+}
+
+.radios {
+  margin-right: 15px;
+}
+
+.radio_unclicked {
+  background-color: white;
+  border: none;
+}
+
+.radio_clicked {
+  background-color: white;
+  border-style: solid;
+  border-color: black;
 }
 
 .crossed {
