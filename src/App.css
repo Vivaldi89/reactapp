@@ -177,7 +177,7 @@ li {
   display: inline;
   word-break: break-all;
   text-overflow: ellipsis;
-  margin-left: 15px;
+  margin-left: 5px;
   align-content: center;
   margin-top: -4px;
 }
