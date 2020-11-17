@@ -37,14 +37,22 @@ const TodoItem = ({ markAsChecked, remove, checkAll, clearCompleted, all, todo, 
       {posts.map((value, index) => {
         if (!value.checked) check_counter++;
         return (
-        <li className={"item list-group-item " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
-          <input type="checkbox" className="in-item option-input checkbox" onClick={e => {console.log(value.id); markAsChecked(value.id)}} checked={value.checked}/>
+         <li className={"item list-group-item " + (value.checked ? 'crossed' : 'no-cross')}key={index}>
+          <div class="promoted-checkbox">
+            <input id={value.id} type="checkbox" className="promoted-input-checkbox" onClick={e => {markAsChecked(value.id); console.log(value.id);}} checked={value.checked}/>
+            <label for={value.id}>
+              <svg>
+                <use xlinkHref='#checkmark' />
+              </svg>
+            </label>
+          </div>
+          {/* <input type="checkbox" id="_checkbox" className="" onClick={e => {markAsChecked(value.id)}} checked={value.checked}/> */}
           <div className='text'>{value.text}</div>
           <div className="trash"><FontAwesomeIcon className="crossed" type="button" id="trash" icon={faTrashAlt} onClick={() => remove(value.id)}/></div>
         </li>
         )
       })} 
-        
+      {/* in-item option-input checkbox */}
       </ul>
       <li id="last" className="list-group-item">
           <div id="btn-gr" className="btn-group btn-group-toggle">

@@ -153,6 +153,12 @@ p {
   height: 15px;
 }
 
+/* content: '✔'; */
+
+.checkbox {
+  border-color: gray;
+}
+
 li {
   display: flex;
   align-items: center;
@@ -180,7 +186,7 @@ li {
   float: right;
   height: 100%;
   margin-bottom: -9px;
-  margin-top: 5px;
+  margin-top: 3px;
   margin-right: 20px;
 }
 
