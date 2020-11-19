@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import axios from 'axios';
+// import callApi from '../../../../../mern-react-redux-nodejs-express-todo-list/client/util/apiCaller';
+import apiCall from './apicall'
 
 export const initialState = {
   tasks: [] //flag_show_if_task_completed (false by default)
@@ -91,11 +93,20 @@ export const todoSlice = createSlice({
 
     completed: state => {
       localStorage.setItem('mode', 2)
+    },
+    // apiCall: state => {
+    //   axios.get('/todos')
+    //     .then((resp) => {return resp.data})
+    // },
+    getData: (state, action) => {
+      console.log(apiCall())
+      // state.tasks(() => {return apiCall()})
+      return state
     }
 
   }
 });
 
-export const {add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed} = todoSlice.actions;
+export const { getData, add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed} = todoSlice.actions;
 
 export default todoSlice.reducer;
