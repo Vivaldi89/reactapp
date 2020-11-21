@@ -33,7 +33,9 @@ app.get('/todos', (req, res) => {
         .catch((err) => res.json({ error: err }))
 })
 
-
+app.get('/:id', (req, res) => {
+    console.log(req.params.id);
+})
 
 module.exports = TD;
 

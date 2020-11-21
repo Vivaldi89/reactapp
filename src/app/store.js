@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk';
 import { todoSlice } from './Containers/TodoInput/todoSlice';
 
 

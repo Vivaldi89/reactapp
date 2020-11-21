@@ -1,12 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {  createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import callApi from '../../../../../mern-react-redux-nodejs-express-todo-list/client/util/apiCaller';
-import apiCall from './apicall'
 
-export const initialState = {
-  tasks: [] //flag_show_if_task_completed (false by default)
-  ,  // task should have a format {id: unique_value, text: taks_text, checked: flag_show_if_task_completed (false by default) }
-};
+export const initialState =
+{
+  tasks: []
+}
+// {
+//   tasks: [] //flag_show_if_task_completed (false by default)
+//   ,  // task should have a format {id: unique_value, text: taks_text, checked: flag_show_if_task_completed (false by default) }
+// };
 
 export const todoSlice = createSlice({
   name: 'todo',
@@ -35,25 +37,33 @@ export const todoSlice = createSlice({
       }},
 
     remove: (state, action) => {
+      axios.get('/rem').then((e) => {return})
+      console.log("Remove");
       let id = action.payload; // todo implement function for remove todo from the list
       let v = JSON.parse(localStorage.getItem('keys'))
       if (v.length === 1) localStorage.removeItem('mode')
       let newStorage = v.filter((el) => el.id !== id)
       localStorage.setItem('keys', JSON.stringify(newStorage))
+      
+      return state
     },
 
     markAsChecked: (state, action) => {
       let id = action.payload;
-      let v = JSON.parse(localStorage.getItem('keys'))
-      let newStorage = []
-      for (let i = 0; i < v.length; i++) {
-        if (v[i].id === id) {
-          let item = Object.assign({}, v[i], {checked: !v[i].checked})
-          newStorage.push(item)
-        }
-        else newStorage.push(v[i])
-      }
-      localStorage.setItem('keys', JSON.stringify(newStorage))
+      console.log(id);
+      axios.get('/'+String(id))
+      // let v = JSON.parse(localStorage.getItem('keys'))
+      // let newStorage = []
+      // for (let i = 0; i < v.length; i++) {
+      //   if (v[i].id === id) {
+      //     let item = Object.assign({}, v[i], {checked: !v[i].checked})
+      //     newStorage.push(item)
+      //   }
+      //   else newStorage.push(v[i])
+      // }
+      // localStorage.setItem('keys', JSON.stringify(newStorage))
+      // state.tasks = [id]
+      return state
     },
 
     clearCompleted: state => {
@@ -94,19 +104,28 @@ export const todoSlice = createSlice({
     completed: state => {
       localStorage.setItem('mode', 2)
     },
-    // apiCall: state => {
-    //   axios.get('/todos')
-    //     .then((resp) => {return resp.data})
-    // },
+    
     getData: (state, action) => {
-      console.log(apiCall())
-      // state.tasks(() => {return apiCall()})
+      const x = action.payload
+      state.tasks = x
       return state
+       
+    },
+    getTasks: (state, action) => {
+      return state.tasks
     }
-
   }
 });
-
-export const { getData, add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed} = todoSlice.actions;
+// const dispatch = useDispatch()
+export const { getTasks, getData, add, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed} = todoSlice.actions;
 
 export default todoSlice.reducer;
+
+// export const callapi = () => dispatch => {
+//   try {
+//     axios.get('/todos').then(data => dispatch(getData(data.data)))
+//     // return dispatch(x)
+//   } catch (e) {
+//     return console.error(e.message);
+//   }
+// }
