@@ -4,9 +4,6 @@ import TodoInput from "./app/Containers/TodoInput/TodoInput";
 import Tasks from "./app/Components/TodoItem/Items";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Checkbox.css';
-import axios from 'axios';
-import store from './app/store'
-import getData from './app/Containers/TodoInput/todoSlice'
 
 
 

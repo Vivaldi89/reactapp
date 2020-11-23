@@ -1,20 +1,15 @@
+const todoSchema = require('./todoModel')
+const userSchema = require('./userModel')
 const express = require('express');
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
 
 const PORT = 8080
 const app = express();
 const dbURI = 'mongodb://localhost:27017/todo'
 
-const todoSchema = Schema(
-    {
-    id: { type: Number},
-    text: { type: String},
-    checked: { type: Boolean }
-    }
-) 
 
+const USER = mongoose.model('User', userSchema);
 const TD = mongoose.model('Todo', todoSchema);
 
 mongoose.connect(dbURI)
@@ -86,13 +81,6 @@ app.put('/uncheckall', (req, res) => {
             else res.json({ msg: "SUCCESS"})
         })
 })
-    // TD.updateMany({
-    //     id: req.params.id
-    // }, {$set:{ checked: req.params.check }},
-    // (err, newTD) => {
-    //     if (err) res.status(204)
-    //     else res.send({ msg: "Success"})
-    // }}
 
 
 app.get('/fun', (req, res) => {

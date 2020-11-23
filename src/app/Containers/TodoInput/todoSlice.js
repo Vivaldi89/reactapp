@@ -110,7 +110,6 @@ export const todoSlice = createSlice({
       const x = action.payload
       state.tasks = x
       return state
-       
     },
   }
 });

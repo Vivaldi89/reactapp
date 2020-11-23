@@ -9,10 +9,6 @@ import store from '../../store';
 import { PropTypes } from 'react';
 
 class Tasks extends React.Component {
-    state = {
-      tasks: this.fetchData(),
-    }
-
     getMode() {
       return localStorage.getItem('mode')
     }
@@ -29,7 +25,7 @@ class Tasks extends React.Component {
       axios.get(`/todos`)
         .then(res => {
           const tasks = res.data;
-          store.dispatch(this.props.getData(tasks));
+          this.props.getData(tasks);
         })
     }
 
@@ -38,8 +34,7 @@ class Tasks extends React.Component {
     }
 
     handleMark = (id, check) => {
-      
-      store.dispatch(this.props.markAsChecked([id, check]))
+      this.props.markAsChecked([id, check])
       this.syncDB()
     }
 
@@ -64,7 +59,7 @@ class Tasks extends React.Component {
     }
 
     fetchData() {
-      return store.getState().tasks
+      return this.props.state.tasks
     }
 
     getLocalState() {
@@ -97,7 +92,10 @@ class Tasks extends React.Component {
         posts = this.fetchData()
         break;
     }
-    if (this.getCheckedCounter() === 0 && this.getUncheckedCounter() ===0) return null
+    if (this.getCheckedCounter() === 0 && this.getUncheckedCounter() ===0) {
+      return null
+    }
+    // } return null
     return (
         <div>
           <ul id="ll" className="list-group list-group-flush">
@@ -142,8 +140,9 @@ class Tasks extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
+        state: state,
         tasks: state.tasks
     };
 }
 
-export default connect( mapStateToProps , {  getTasks, getData, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed  })(Tasks);
+export default connect( mapStateToProps , {getTasks, getData, remove, markAsChecked, checkAll, clearCompleted, all, todo, completed })(Tasks);
