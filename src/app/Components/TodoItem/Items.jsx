@@ -97,7 +97,7 @@ class Tasks extends React.Component {
         posts = this.fetchData()
         break;
     }
-    if (posts.length === 0) return null
+    if (this.getCheckedCounter() === 0 && this.getUncheckedCounter() ===0) return null
     return (
         <div>
           <ul id="ll" className="list-group list-group-flush">
