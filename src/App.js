@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import TodoInput from "./app/Containers/TodoInput/TodoInput";
-import TodoItem from "./app/Components/TodoItem/TodoItem";
 import Tasks from "./app/Components/TodoItem/Items";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Checkbox.css';
